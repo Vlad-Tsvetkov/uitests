@@ -1,5 +1,6 @@
 import pytest
 
+from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from pages.create_acc_page import CreateAccPage
 from pages.collections_page import CollectionPage
@@ -8,7 +9,9 @@ from pages.sale_page import SalePage
 
 @pytest.fixture()
 def driver():
-    chrome_driver = webdriver.Chrome()
+    options = Options()
+    options.add_argument('--headless')
+    chrome_driver = webdriver.Chrome(options=options)
     chrome_driver.maximize_window()
     return chrome_driver
 
