@@ -1,3 +1,5 @@
+import allure
+
 from pages.base_page import BasePage
 from locators import collections_page_locs as loc
 from selenium.webdriver.support.wait import WebDriverWait
@@ -11,14 +13,17 @@ class CollectionPage(BasePage):
     category_title = 'Eco Friendly'
     product_name = 'Ana Running Short'
 
+    @allure.title('Проверка соответствия категории')
     def check_category_text(self):
         category_text = self.find(loc.category).text
         assert category_text == self.category_text
 
+    @allure.title('Проверка соответствия тайтла')
     def check_category_title(self):
         category_title = self.driver.title
         assert category_title == self.category_title
 
+    @allure.title('Проверка добавления товара в корзину')
     def add_to_cart(self):
         size_btn = WebDriverWait(self.driver, 5).until(ec.element_to_be_clickable(loc.short_28_size))
         ac(self.driver).move_to_element(size_btn).perform()

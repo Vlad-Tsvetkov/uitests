@@ -1,3 +1,5 @@
+import allure
+
 from pages.base_page import BasePage
 from locators import create_acc_page_locs as loc
 
@@ -15,6 +17,7 @@ class CreateAccPage(BasePage):
         'Lower Case, Upper Case, Digits, Special Characters.'
     )
 
+    @allure.title('Кейс без имени')
     def no_first_name_given(self):
         self.find(loc.last_name).send_keys(self.lname)
         self.find(loc.email).send_keys(self.email)
@@ -24,6 +27,7 @@ class CreateAccPage(BasePage):
         error_text = self.find(loc.first_name_error).text
         assert error_text == self.required_field_error
 
+    @allure.title('Кейс некорректный емейл')
     def invalid_email(self):
         self.find(loc.first_name).send_keys(self.fname)
         self.find(loc.last_name).send_keys(self.lname)
@@ -34,6 +38,7 @@ class CreateAccPage(BasePage):
         error_text = self.find(loc.email_error).text
         assert error_text == self.invalid_email_error
 
+    @allure.title('Кейс некорректный пароль')
     def invalid_password(self):
         self.find(loc.first_name).send_keys(self.fname)
         self.find(loc.last_name).send_keys(self.lname)
