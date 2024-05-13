@@ -50,7 +50,7 @@ jobs:
       - name: generating report
         run: allure generate -c allure-results -o allure-report
       - name: saving report
-        uses: upload-artifact@v4
+        uses: upload-artifact@v3
         with:
           name: allure-report
           path: allure-report
