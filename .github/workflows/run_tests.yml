@@ -1,1 +1,19 @@
+name: UI autotests
 
+on: [push]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    name: UI autotests
+    steps:
+      - name: Checkout tests
+        uses: actions/checkout@v4
+      - name: Checkout pyenv
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: run tests
+        run: pytest
